@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Дома</name>
+    <Style id="icon-1899-0288D1-nodesc-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-nodesc-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>г. Санкт-Петербург, пр-кт. Большевиков, 43, к. 1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4891527,59.890713,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>г. Санкт-Петербург, ул. Коллонтай, 17, к. 3</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4623494,59.9165776,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>г. Санкт-Петербург, пр-кт. Большевиков, 11, к. 2, стр. а</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4768306,59.9117532,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>г. Санкт-Петербург, ул. Антонова-Овсеенко, 5, к. 1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4595625,59.9061508,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>г. Санкт-Петербург, ул. Народная, 53, к. 3</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4786277,59.8815622,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>г. Санкт-Петербург, ул. Дыбенко, 13, к. 5, лит. А</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4650557,59.901984,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>пр. Пятилеток, 2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.465274,59.919659,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Искровский пр., 40</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4782760000001,59.895153,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>пр. Солидарности, 21к3</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.497487,59.914942,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Дыбенко, 11 корпус 3</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4630361,59.9010506,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>пр. Большевиков, 47к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.488976,59.889306,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Крыленко, 43к2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.493663,59.899803,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Крыленко, 13к4</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.471505,59.893722,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>пр. Пятилеток, 5к2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.460002,59.922892,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Искровский пр., 29к2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4729211,59.8983361,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Подвойского, 26 корпус 3</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4810663000001,59.9146191,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Латышских Стрелков, 1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4703440000001,59.92724,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Российский пр., 8</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4712892,59.926657,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Клочков пер., 10к2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.46324,59.921087,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Коллонтай, 15к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.460207,59.916609,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Коллонтай, 15к2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.461123,59.915867,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Коллонтай, 17к2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.463539,59.917399,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Коллонтай, 17к4</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.464097,59.916671,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Коллонтай, 6к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4498298999999,59.9153927,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Народная ул., 53к3</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.478611,59.881496,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>пр. Солидарности, 14к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.495867,59.918732,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Бадаева, 6к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4511725,59.9174768,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Бадаева, 8к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4470853,59.9180513,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Бадаева, 8к2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4488200000001,59.916886,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Бадаева, 8к3</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.446719,59.917124,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Бадаева, 14к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.441993,59.919436,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Бадаева, 14к2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.44273,59.9181331,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Бадаева, 14к4</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4415974999999,59.9183363,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Подвойского, 13к2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4697679999999,59.911087,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>пр. Большевиков, 7 корп.3</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4699902,59.9152245,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Бадаева, 5Ак2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4458950000001,59.9203,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Жилой комплекс Аврора 2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4537142,59.9094609,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Коллонтай, 5/1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4494486,59.914146,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>пр. Большевиков, 11к2</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4766092,59.9116769,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Латышских Стрелков, 15к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.459475,59.929699,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Латышских Стрелков, 15к3</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.458952,59.930669,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Латышских Стрелков, 17к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4577064,59.9299169,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Искровский пр., 23к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.470025,59.901123,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Искровский пр., 32</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4739774,59.8988885,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Латышских Стрелков, 3</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.468784,59.92704,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Антонова-Овсеенко, 5к1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.459533,59.90609,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Подвойского, д. 8, лит. А</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.4581678,59.9091148,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>ул. Крыленко, 1</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          30.452012,59.893002,0
+        </coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>
