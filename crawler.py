@@ -14,8 +14,9 @@ import myconfig
 
 TELEGRAM_TOKEN = "453478799:AAGyWsQm2B28Yok4I81EGkv-CHA58lPlgDo"
 TELEGRAM_CHAT_ID = "116360945"
-AVITO_DATA_FILE_PATH = myconfig.avito_datafile
+DATA_FILE_PATH = myconfig.avito_datafile
 AVITO_URL = myconfig.avito_url
+CIAN_URL = myconfig.cian_url
 POINTS_DATA_FILE = myconfig.points_datafile
 INFORM = myconfig.inform_flag
 DIST_THRESHOLD = myconfig.dist_threshold
@@ -23,7 +24,7 @@ DIST_THRESHOLD = myconfig.dist_threshold
 points = []
 names = []
 
-new_apartments_avito = []
+new_apartments = []
 
 def send_bot_msg(msg):
 	msg = urllib.parse.quote_plus(msg)
@@ -33,7 +34,7 @@ def send_bot_msg(msg):
 		print("Response: " + str(html))
 
 def inform_load():
-	for new_ap in new_apartments_avito:
+	for new_ap in new_apartments:
 		send_bot_msg(new_ap)
 
 def load_page(url):
@@ -46,74 +47,121 @@ def load_page(url):
 
 def generate_inform_msg(addr, target_addr, url, type):
 	if type==0: #not match
-		return "New apartment:\nhttps://www.avito.ru%" + url
+		return "New apartment:\n" + url
 	else: # match
-		return "New apartment [!!!!!!!!!!!!!!!!!]:\n" + addr + "[" + target_addr + "]\nhttps://www.avito.ru" + url
+		return "New apartment [!!!!!!!!!!!!!!!!!]:\n" + addr + "[" + target_addr + "]\n" + url
 
-def process_page_avito(html, write_header, existing_ids_avito, millis):
+def parse_avito_page(d, ids, infos, urls, prices, address):
+	for item in d("div.item.item_table"):
+		ids.append(item.attrib["id"])
+	for item in d("a.item-description-title-link"):
+		infos.append(item.text.strip().split(",")[1].strip().replace(" м²", ""))
+		urls.append("https://www.avito.ru" + item.attrib["href"])
+	for item in d("div.about"):
+		prices.append(item.text.strip().replace(" руб. в месяц", "").replace(" ", ""))
+	for item in d("p.address.fader"):
+		address.append(item[1].tail.strip().replace(", ","", 1).replace('\"',''))
+
+def parse_cian_page(d, ids, infos, urls, prices, address):
+	offers = []
+	for item in d("div"):
+		if "offer-container" in str(item.attrib.get('class')):
+			offers.append(item)
+	for offer in offers:
+		auth_elem=offer[0][1][0][0][1][1][0][0][0][1][0][0]
+		if "Собственник" not in str(auth_elem.text):
+			continue
+		# address parse
+		addr_elem=offer[0][1][0][0][0][0][0][0][1]
+		if 'building' in addr_elem.attrib.get('class'):
+			addr_elem=offer[0][1][0][0][0][0][0][0][2]
+		addr_res = ""
+		for elem_i in range(0, len(addr_elem), 1):
+			addr_res = addr_res + addr_elem[elem_i].text + " "
+		address.append(addr_res)
+		#print(addr_res)
+		
+		id_elem=offer[0][1][0][1][0]
+		#print(id_elem.attrib.get('href'))
+		urls.append(id_elem.attrib.get('href'))
+		id_1=id_elem.attrib.get('href').replace("https://spb.cian.ru/rent/flat/","").replace("/","")
+		ids.append(id_1)
+		infos.append('undefined')
+		prices.append('undefined')
+
+def process_page(html, write_header, existing_ids, millis, type):
 	ids = []
 	infos = []
 	urls = []
 	prices = []
 	address = []
 
+	#print(html)
 	d = pq(html)
-	for item in d("div.item.item_table"):
-		ids.append(item.attrib["id"])
-	for item in d("a.item-description-title-link"):
-		infos.append(item.text.strip().split(",")[1].strip().replace(" м²", ""))
-		urls.append(item.attrib["href"])
-	for item in d("div.about"):
-		prices.append(item.text.strip().replace(" руб. в месяц", "").replace(" ", ""))
-	for item in d("p.address.fader"):
-		address.append(item[1].tail.strip().replace(", ","", 1).replace('\"',''))
+	if type==1:
+		parse_avito_page(d, ids, infos, urls, prices, address)
+	else:
+		parse_cian_page(d, ids, infos, urls, prices, address)
 
-	with open(AVITO_DATA_FILE_PATH, 'a') as csvfile:
+	with open(DATA_FILE_PATH, 'a') as csvfile:
 		fieldnames = ['id', 'url', 'info', 'price', 'address', 'timestamp']
-		writer = csv.DictWriter(csvfile, fieldnames=fieldnames, dialect='unixpwd')
+		writer = csv.DictWriter(csvfile, fieldnames=fieldnames, dialect='unixpwd', escapechar='\\')
 		if write_header == 1:
 			writer.writeheader()
 		for idx, val in enumerate(infos):
-			if ids[idx] not in existing_ids_avito:
+			if ids[idx] not in existing_ids:
 				#print("Found unique id:" + str(ids[idx]))
 				match_res = find_matches(address[idx])
 				if match_res != "":
-					new_apartments_avito.append(generate_inform_msg(address[idx], match_res, urls[idx], 1))
+					new_apartments.append(generate_inform_msg(address[idx], match_res, urls[idx], 1))
 					print("=============================================")
-					print("https://www.avito.ru%s" % urls[idx])
+					print(urls[idx])
 					print(match_res)
 					print(address[idx])
 					print("=============================================")
 				else:
 					#print("Match not found: " + address[idx])
-					new_apartments_avito.append(generate_inform_msg("", "", urls[idx], 0))
+					new_apartments.append(generate_inform_msg("", "", urls[idx], 0))
 				writer.writerow({'id': ids[idx], 'url': urls[idx], 'info': infos[idx], 'price': prices[idx], 'address': address[idx], 'timestamp': millis})
 	return len(ids)
 
-def run_avito_crawler():
-	existing_ids_avito = []
+def run_crawler():
+	existing_ids = []
 	millis = str(int(round(time.time() * 1000)))
 
 	csv.register_dialect('unixpwd', delimiter=':', quoting=csv.QUOTE_NONE)
 	# Read file for ids
-	with open(AVITO_DATA_FILE_PATH, newline='') as csvfile:
-		reader = csv.reader(csvfile, delimiter=':')
+	with open(DATA_FILE_PATH, newline='') as csvfile:
+		reader = csv.reader(csvfile, delimiter=':', escapechar='\\')
 		for row in reader:
 			if len(row) > 0:
-				existing_ids_avito.append(row[0])
+				existing_ids.append(row[0])
 
 	total = 0
 	write_header = 0
-	if os.path.getsize(AVITO_DATA_FILE_PATH)==0:
+	if os.path.getsize(DATA_FILE_PATH)==0:
 		write_header = 1
+		
+	# AVITO crawling
 	for page in range(1, 10, 1):
+		#break # TODO remove
 		url = AVITO_URL + "&p=" + str(page)
 		html = load_page(url)
-		page_len = process_page_avito(html, write_header, existing_ids_avito, millis)
+		page_len = process_page(html, write_header, existing_ids, millis, 1)
 		write_header = 0
 		total += page_len
-		print("Number of loaded apartments: " + str(page_len))
+		print("Number of loaded apartments [AVITO]: " + str(page_len))
 		if (page_len < 50):
+			break
+
+	# CIAN crawling
+	for page in range(1, 10, 1):
+		url = CIAN_URL + "&p=" + str(page)
+		html = load_page(url)
+		page_len = process_page(html, write_header, existing_ids, millis, 2)
+		total += page_len
+		print("Number of loaded apartments [CIAN]: " + str(page_len))
+		if (page_len < 25):
 			break
 
 def dist(left, right):
@@ -159,9 +207,8 @@ def prepare_points():
 	print("Loaded %d points from file" % len(points))
 
 prepare_points()
-run_avito_crawler()
+run_crawler()
 if INFORM=="1":
 	inform_load()
-#print(new_apartments_avito)
 
 
