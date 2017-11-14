@@ -34,9 +34,7 @@ def send_bot_msg(msg):
 
 def inform_load():
 	for new_ap in new_apartments_avito:
-		text = "New apartment:\n"
-		text += new_ap
-		send_bot_msg(text)
+		send_bot_msg(new_ap)
 
 def load_page(url):
 	print("Loading url:" + url)
@@ -45,6 +43,12 @@ def load_page(url):
 	mystr = mybytes.decode("utf8")
 	fp.close()
 	return mystr;
+
+def generate_inform_msg(addr, target_addr, url, type):
+	if type==0: #not match
+		return "New apartment:\nhttps://www.avito.ru%" + url
+	else: # match
+		return "New apartment [!!!!!!!!!!!!!!!!!]:\n" + addr + "[" + target_addr + "]\nhttps://www.avito.ru" + url
 
 def process_page_avito(html, write_header, existing_ids_avito, millis):
 	ids = []
@@ -72,16 +76,18 @@ def process_page_avito(html, write_header, existing_ids_avito, millis):
 		for idx, val in enumerate(infos):
 			if ids[idx] not in existing_ids_avito:
 				#print("Found unique id:" + str(ids[idx]))
-				if find_matches(address[idx]) == 1:
-					new_apartments_avito.append("MATCH:\nhttps://www.avito.ru%" + urls[idx])
+				match_res = find_matches(address[idx])
+				if match_res != "":
+					new_apartments_avito.append(generate_inform_msg(address[idx], match_res, urls[idx], 1))
+					print("=============================================")
 					print("https://www.avito.ru%s" % urls[idx])
+					print(match_res)
+					print(address[idx])
+					print("=============================================")
 				else:
 					#print("Match not found: " + address[idx])
-					new_apartments_avito.append("https://www.avito.ru%" + urls[idx])
+					new_apartments_avito.append(generate_inform_msg("", "", urls[idx], 0))
 				writer.writerow({'id': ids[idx], 'url': urls[idx], 'info': infos[idx], 'price': prices[idx], 'address': address[idx], 'timestamp': millis})
-			else:
-				print("Found already existing id:" + str(ids[idx]))
-	
 	return len(ids)
 
 def run_avito_crawler():
@@ -97,15 +103,14 @@ def run_avito_crawler():
 				existing_ids_avito.append(row[0])
 
 	total = 0
+	write_header = 0
+	if os.path.getsize(AVITO_DATA_FILE_PATH)==0:
+		write_header = 1
 	for page in range(1, 10, 1):
 		url = AVITO_URL + "&p=" + str(page)
 		html = load_page(url)
-		write_header = 1
-		if os.path.getsize(AVITO_DATA_FILE_PATH)==0:
-			write_header = 0
-		if page > 1:
-			write_header = 0
 		page_len = process_page_avito(html, write_header, existing_ids_avito, millis)
+		write_header = 0
 		total += page_len
 		print("Number of loaded apartments: " + str(page_len))
 		if (page_len < 50):
@@ -135,15 +140,15 @@ def find_matches(addr):
 	#print("Target coord: " + coord)
 
 	if coord=="undefined":
-		return 0
+		return ""
 	for idx, point in enumerate(points):
 		distance = dist(point, coord)
 		if (distance < DIST_THRESHOLD):
-			print("Match found: %s" % names[idx])
+			#print("Match found: %s" % names[idx])
 			#print(point)
 			#print(names[idx])
-			return 1
-	return 0
+			return names[idx]
+	return ""
 
 def prepare_points():
 	tree = ET.parse(POINTS_DATA_FILE)
@@ -157,5 +162,6 @@ prepare_points()
 run_avito_crawler()
 if INFORM=="1":
 	inform_load()
+#print(new_apartments_avito)
 
 
